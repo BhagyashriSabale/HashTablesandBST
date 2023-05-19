@@ -61,6 +61,7 @@ namespace HashTablesandBST
                 {
                     
                     foundItem = item;
+                    break;
                 }
             }
             if(!EqualityComparer<KeyValue<K, V>>.Default.Equals(foundItem, default(KeyValue<K, V>)))

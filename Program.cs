@@ -39,6 +39,29 @@
                 int frequency = wordFrequencyMap.Get(words[i]);
                 Console.WriteLine(words[i] + ": " + frequency);
             }
+            string wordToRemove = "avoidable";
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i].Equals(wordToRemove))
+                {
+                    wordFrequencyMap.Remove(words[i]);
+                    break;
+                }
+            }
+            Console.WriteLine("\nParagraph after removing the word \"" + wordToRemove + "\":");
+            for (int i = 0; i < words.Length; i++)
+            {
+                Console.Write(words[i] + " ");
+            }
+            Console.WriteLine();
+
+            Console.WriteLine("\nWord Frequency after removing the word \"" + wordToRemove + "\":");
+            for (int i = 0; i < words.Length; i++)
+            {
+                int frequency = wordFrequencyMap.Get(words[i]);
+                Console.WriteLine(words[i] + ": " + frequency);
+            }
+
         }
     }
 }
