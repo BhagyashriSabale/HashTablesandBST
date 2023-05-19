@@ -16,6 +16,29 @@
 
             string hash5 = hash.Get("5");
             Console.WriteLine("5th index values: " + hash5);
+
+            string paragraph = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+            string[] words = paragraph.Split(' ');
+
+            MyMapNode<string, int> wordFrequencyMap = new MyMapNode<string, int>(words.Length);
+            foreach (string word in words)
+            {
+                if (wordFrequencyMap.Get(word) != 0)
+                {
+                    int frequency = wordFrequencyMap.Get(word);
+                    wordFrequencyMap.Add(word, frequency + 1);
+                }
+                else
+                {
+                    wordFrequencyMap.Add(word, 1);
+                }
+            }
+            Console.WriteLine("Word Frequency in the paragraph:");
+            for (int i = 0; i < words.Length; i++)
+            {
+                int frequency = wordFrequencyMap.Get(words[i]);
+                Console.WriteLine(words[i] + ": " + frequency);
+            }
         }
     }
 }

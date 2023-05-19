@@ -38,24 +38,32 @@ namespace HashTablesandBST
         {
             int position = GetArrayPosition(key);
             LinkedList<KeyValue<K, V>> linkedList = GetLinkedList(position);
-            KeyValue<K, V> item = new KeyValue<K, V>() { key = key, value = value };
-            linkedList.AddLast(item);
+            for (int i = 0; i < linkedList.Count; i++)
+            {
+                KeyValue<K, V> item = linkedList.ElementAt(i);
+                if (item.key.Equals(key))
+                {
+                    item.value = value; // Update the value if the key already exists
+                    return;
+                }
+            }
+            KeyValue<K, V> newItem = new KeyValue<K, V>() { key = key, value = value };
+            linkedList.AddLast(newItem);
         }
         public void Remove(K key)
         {
             int position = GetArrayPosition(key);
-            LinkedList<KeyValue<K,V>> linkedList = GetLinkedList(position);
-            bool itemFound = false;
+            LinkedList<KeyValue<K, V>> linkedList = GetLinkedList(position);
             KeyValue<K, V> foundItem = default(KeyValue<K, V>);
             foreach(KeyValue<K, V> item in linkedList)
             {
                 if(item.key.Equals(key))
                 {
-                    itemFound = true;
+                    
                     foundItem = item;
                 }
             }
-            if(itemFound)
+            if(!EqualityComparer<KeyValue<K, V>>.Default.Equals(foundItem, default(KeyValue<K, V>)))
             {
                 linkedList.Remove(foundItem);
             }
